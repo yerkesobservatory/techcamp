@@ -1,0 +1,8 @@
+Please put documentation here for the code which will be used
+in the drone camps.
+
+Overall information should be on the projects page under
+https://sites.google.com/a/starsatyerkes.net/yerkesprojects/programs/yaays/drone-information
+
+For quick questions use Email or slack at
+https://stoneedgeobservatory.slack.com/messages/G9PATDYH2/
