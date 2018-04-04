@@ -9,6 +9,10 @@
     Python Version 3
     
     Usage: python flasksim.py configfile.txt
+    
+    2DO List:
+    - Add two way communication to insensim
+    - Add one way communication to inphoto for taking rgb image
 
 '''
 
