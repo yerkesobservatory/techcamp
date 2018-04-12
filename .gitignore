@@ -103,3 +103,6 @@ ENV/
 # eclipse
 .project
 .pydevproject
+
+# Operating systems
+.DS_Store
