@@ -12,28 +12,12 @@
 
 '''
 
-### Imports 
+# Imports 
 import socket
+from bparts import commsocket
 
-### Settings
-port = 50747
-host = 'localhost'
+# Settings
+flask_port = 50747
 
-### Main Program
-# Make socket, bind and listen
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-sock.bind((host,port))
-sock.listen(5)
-print('Server Listening (use Ctrl-c to quit)')
-# Receive loop
-while 1:
-    # Get new connection
-    conn, addr = sock.accept()
-    print('Conected with %s at address %s' % (addr[0],str(addr[1])))
-    # Get the message
-    reply = conn.recv(1024)
-    print('  Got message: %s' % reply)
-    # Close the connection
-    conn.close()
-    print('  Connection Closed')
+# Run server with testresponse_noanswer function
+commsocket.server(commsocket.testresponse_noanswer, flask_port)

@@ -5,14 +5,10 @@ CommSocket
 This library contains functions for one- and two-way communication
 between different programs over sockets. 
 
-2DO:
-    - Add send_msg to flasksim and test
-    - Add server to outputsim and test
-    - Add send_recv to flasksim and server to insensim and test
-
 """
-from test.test_enum import Answer
+
 import string
+import socket
 
 def send_msg(message, port, server = '127.0.0.1'):
     """ Sends a message to a given port on server. This function
@@ -54,8 +50,8 @@ def send_recv(message, port, server = '127.0.0.1', resplen = 100):
     # Send message
     s.sendall(message.encode())
     # Wait for response
-    resp = str(s.recv(100))
-    resp = str(resp)
+    resp = s.recv(100)
+    resp = resp.decode()
     # Close socket and return
     s.close()
     return resp
@@ -74,13 +70,14 @@ def server( respfunct, port):
             
         Notes:
           - There is no quit: The process needs to be interrupted
-            externally.
+            externally (Ctrl-C).
     """
     # Make socket, bind and listen
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock.bind(('localhost',port))
     sock.listen(5)
+    print('Server Listening (use Ctrl-c to quit)')
     # Receive loop
     while 1:
         # Get new connection
@@ -88,7 +85,7 @@ def server( respfunct, port):
         print('Conected with %s at address %s' % (addr[0],str(addr[1])))
         # Get the message
         message = conn.recv(1024)
-        message = str(message)
+        message = message.decode()
         print('  Got message: %s' % message )
         # Run response function
         response = respfunct(message)
@@ -108,7 +105,7 @@ def testresponse_noanswer(message):
         Returns:
             '', an empty string
     """
-    print("Test Response: Received the Message " + message)
+    print('Test Response: Received the Message "%s"' % message)
     return ''
     
 def testresponse_withanswer(message):
@@ -120,5 +117,5 @@ def testresponse_withanswer(message):
         Returns:
             A string with the message and confimation
     """
-    print("Test Response: Recieved the Message " + message)
+    print('Test Response: Recieved the Message "%s"' % message)
     return "OK: " + message
