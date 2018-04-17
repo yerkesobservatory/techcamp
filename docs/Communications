@@ -1,21 +1,26 @@
-This is a list of variables that are sent over socket. Add to this document as more data is sent over socket
+COMMUNICATIONS PROTOCOLS
+========================
+
+This is a list of variables that are sent over socket. Add to this document as more data is sent over socket.
+
+Flask -> Output
+---------------
 
 Motor Communication:
 "m# (-100 - 100) //-#: motor backward at #% power; 0: stop motor; #: motor forward at #% power
 
-Image Communication:
-"color #" //take color image; #=alpha of image
-
-Sensor Communication:
-" 'Sensor Name' " //Sensor name will change based on sensores avalible. This command will send back the reading of the sensor at that time.
-
 Led Communication:
 "led# #" //The second # indicates the power of led upto 255; Example: led1 255 // Led1 is at full power
 
+Flask -> Image
+--------------
 
+Image Communication:
+"color #" //take color image; #=alpha of image
 
+Flask <-> Sensor
+----------------
 
-
-
-
+Sensor Communication:
+" 'Sensor Name' " //Sensor name will change based on sensores avalible. This command will send back the reading of the sensor at that time.
 
