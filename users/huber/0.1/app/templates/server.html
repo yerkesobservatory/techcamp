@@ -1,0 +1,12 @@
+
+
+{% block content %}
+    <h1>Send Command</h1>
+    <form action="" method="post">
+        <p>
+            {{ form.command.label }}<br>
+            {{ form.command(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
