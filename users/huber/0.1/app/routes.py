@@ -18,6 +18,7 @@ def index():
 def server():
 	#Gets the form data from the website
 	form=commandForm(request.form)
+        command = 'No Command'
 	if request.method == 'POST':
 		command = form.command.data
 
@@ -36,4 +37,5 @@ def server():
 
 
 
-	return render_template('server.html',title='Send Command',form=form)
+	return render_template('server.html',title='Send Command',form=form,
+                               response=command)
