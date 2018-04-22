@@ -1,0 +1,25 @@
+This is a list of all the pages used by the flask web server.
+
+(/):
+	Landing page for the user. Will contain index.html
+	This is the page that will be edited during the camp to each group.
+	The page will contain Iframes holding other pages; such as motor controll and other misc pages
+
+(/index):
+	Same as (/)
+
+(/droneterm):
+	This will contain the socket command line to directly communicate with each part of the program.
+
+(/motor):
+	This will be the page that will contain the button commands for the motors/servos.
+	The buttons will be intervals of how long the motor should run; .1 seconds, .5 seconds, 1 seconds, etc
+
+(/stream):
+	This page will contain the black & white image stream that will refresh every 1 to 5 seconds
+
+(/color):
+	This page will contain the color image
+
+(/camera): 
+	This page will have the button to take the color image
