@@ -106,3 +106,6 @@ ENV/
 
 # Operating systems
 .DS_Store
+
+# Application specific
+*_20*.jpg
