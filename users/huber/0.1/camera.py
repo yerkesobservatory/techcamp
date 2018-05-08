@@ -19,19 +19,21 @@ def img_stream():
 	camera.resolution=(320,240) #sets the resolution of the camera
 	camera.annotate_text = datetime.now().strftime('%Y-%m-%d %H:%M:%S') #adds time stamp to image
 
-	camera.capture('app/static/images/image.jpg') #Take the image
-
+	camera.capture('app/static/images/stream.jpg') #Take the image
+	if time==10:
+		camera.capture('data/images/bw/bw_'+datetime.now().strftime('%Y-%m-%d_%H-%M-%S')+.'jpg')
+	time++
 	#shutil.copy('image.jpg', 'image2018-04-15_15-32-26.jpg')
 
-def take_color(messare):
+def take_color(message):
 	print message
 	if message == 'color':
 	#Change camera settings	
 		camera.color_effects = None #removes all color effects
 		camera.resolution=(2592,1944)  #sets the resolution of the camera
 		camera.annotate_text = datetime.now().strftime('%Y-%m-%d %H:%M:%S') #Adds time stamp to image
-
 		camera.capture('app/static/images/color.jpg') #Take the image
+		camera.capture('data/images/color/color_'+datetime.now().strftime('%Y-%m-%d_%H-%M-%S')+.'jpg')
 
 # Main Loop
 x = threading.Thread(name='img_stream', target=img_stream)

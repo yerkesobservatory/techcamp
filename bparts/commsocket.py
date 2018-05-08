@@ -90,7 +90,7 @@ def server( respfunct, port):
         # Run response function
         response = respfunct(message)
         # Return response
-        if len(response):
+        if response != None:
             conn.sendall( response.encode())
         # Close the connection
         conn.close()

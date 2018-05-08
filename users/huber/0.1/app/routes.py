@@ -42,6 +42,9 @@ def droneterm():
 @app.route('/stream')
 def stream():
 	return render_template('stream.html')
+@app.route('/color')
+def stream():
+	return render_template('color.html')
 @app.route('/camera',methods=['GET','POST'])
 def camera():
 	form=cameraForm(request.form)
