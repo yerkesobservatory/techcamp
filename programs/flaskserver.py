@@ -1,11 +1,5 @@
-#!/usr/bin/env python
+#flask web server
+from app import app
 
-''' Flask Server
-
-    Flask server for Techcamp Balloon project. This
-    runs the flask webserver which interacts via sockets
-    with other programs for the remote controlled balloon.
-    
-    Python Version 3
-
-'''
+if __name__ == '__main__':
+	app.run(host='0.0.0.0')
