@@ -1,4 +1,4 @@
-import RPi.GPIO as GP1O
+import RPi.GPIO as GPIO
 import time
 GPIO.setmode(GPIO.BCM)
 TRIG = 23
@@ -11,7 +11,7 @@ GPIO.output(TRIG, True)
 time.sleep(0.00001)
 GPIO.output(TRIG, False)
 
-while GPIO.input(ECHO) == 0;
+while GPIO.input(ECHO) == 0:
 	pulse_start = time.time()
 while GPIO.input(ECHO) == 1:
 	pulse_end = time.time()
