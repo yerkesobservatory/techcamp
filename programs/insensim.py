@@ -12,6 +12,21 @@
 
 '''
 
+# Look for parameters
+import sys
+if len(sys.argv) < 2:
+    print("usage: python insensim path/to/config_file.ini")
+    exit(1)
+# Get config file
+import configparser
+config = configparser.ConfigParser()
+config.read(sys.argv[1])
+# Set path is possible
+try:
+    sys.path.append(config['paths']['pythonpath'])
+except:
+    pass
+
 # Imports 
 import socket
 from bparts import commsocket

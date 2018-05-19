@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# RunSim
+# ------
+
+# Bash program to run all simulators
+# Usage: runsim path/to/config_file.ini
+

@@ -8,7 +8,7 @@
     
     Python Version 3
     
-    Usage: python flasksim.py configfile.txt
+    Usage: python flasksim.py configfile.ini
     
     2DO List:
     - Add two way communication to insensim
@@ -17,6 +17,21 @@
 '''
 
 ### Preparation
+
+# Look for parameters
+import sys
+if len(sys.argv) < 2:
+    print("usage: python flasksim path/to/config_file.ini")
+    exit(1)
+# Get config file
+import configparser
+config = configparser.ConfigParser()
+config.read(sys.argv[1])
+# Set path is possible
+try:
+    sys.path.append(config['paths']['pythonpath'])
+except:
+    pass
 
 # Imports 
 import socket
