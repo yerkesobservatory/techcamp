@@ -15,7 +15,7 @@
 # Look for parameters
 import sys
 if len(sys.argv) < 2:
-    print("usage: python insensim path/to/config_file.ini")
+    print("usage: python insensim.py path/to/config_file.ini")
     exit(1)
 # Get config file
 import configparser

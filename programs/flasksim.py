@@ -21,7 +21,7 @@
 # Look for parameters
 import sys
 if len(sys.argv) < 2:
-    print("usage: python flasksim path/to/config_file.ini")
+    print("usage: python flasksim.py path/to/config_file.ini")
     exit(1)
 # Get config file
 import configparser
