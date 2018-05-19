@@ -1,3 +1,16 @@
+# Imports for config and bparts
+import configparser
+import io
+import sys
+config = configparser.ConfigParser()
+#Reads the master.ini config file in the configs folder
+config.read('../configs/master.ini')
+#Takes the techcamp folder path from the master.ini config file
+techcamp_path = config['paths']['techcamp']
+#Adds the techcamp folder as a system path so that is can find bparts
+sys.path.append(techcamp_path)
+from bparts import commsocket
+
 # Imports 
 from flask import render_template, request
 from app import app

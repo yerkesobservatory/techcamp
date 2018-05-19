@@ -1,16 +1,29 @@
-# Imports 
-import socket
+# Imports for config and bparts
+import configparser
+import io
+import sys
+config = configparser.ConfigParser()
+#Reads the master.ini config file in the configs folder
+config.read('../configs/master.ini')
+#Takes the techcamp folder path from the master.ini config file
+techcamp_path = config['paths']['techcamp']
+#Adds the techcamp folder as a system path so that is can find bparts
+sys.path.append(techcamp_path)
 from bparts import commsocket
+
+#Other imports
+import socket
 import picamera
+import threading
+import io
 from Queue import Queue
 from time import sleep
 from datetime import datetime
-#import shutil
-import threading
+from bparts import commsocket
 
 camera = picamera.PiCamera()
 # Globals
-flask_port = 50747
+flask_port = int(config['ports']['flask_port'])
 cmd = ''
 message=''
 time=0
@@ -33,7 +46,7 @@ def take_pic(time):
 			camera.capture('data/images/bw/bw_'+datetime.now().strftime('%Y-%m-%d_%H-%M-%S')+'.jpg')
 			time=0
 		time = time+1
-		
+
 		#Checks if item in queue; aka should it take a color picture
 		while not q.empty():
 				#Change camera settings	
@@ -45,7 +58,6 @@ def take_pic(time):
 			camera.capture('data/images/color/color_'+datetime.now().strftime('%Y-%m-%d_%H-%M-%S')+'.jpg')
 			#ends queue task
 			q.task_done()
-		#shutil.copy('image.jpg', 'image2018-04-15_15-32-26.jpg')
 
 def take_color(message):
 	print message
