@@ -38,8 +38,8 @@ import socket
 from bparts import commsocket
 
 # Globals
-output_port = 50747
-insense_port = 50748
+output_port = int(config['ports']['flask_output'])
+insense_port = int(config['ports']['flask_insense'])
 
 ### Main porgram
 cmd = ''

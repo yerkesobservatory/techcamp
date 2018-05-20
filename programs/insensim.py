@@ -32,7 +32,7 @@ import socket
 from bparts import commsocket
 
 # Settings
-flask_port = 50748
+flask_port = int(config['ports']['flask_insense'])
 
 # Run server with testresponse_noanswer function
 commsocket.server(commsocket.testresponse_withanswer, flask_port)
