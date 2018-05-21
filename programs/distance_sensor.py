@@ -21,8 +21,7 @@ pulse_duration = pulse_end - pulse_start
 distance = pulse_duration = 17150
 distance = round(distance, 2)
 
-with f as open('distance.txt', 'w'):
-	f.write(distance)
-	f.close()
+with open('distance.txt', 'w') as f:
+	f.write(str(distance))
 
 GPIO.cleanup()
