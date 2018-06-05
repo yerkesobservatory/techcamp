@@ -41,7 +41,7 @@ from bparts import commsocket
 output_port = int(config['ports']['flask_output'])
 insense_port = int(config['ports']['flask_insense'])
 
-### Main porgram
+### Main program
 cmd = ''
 # Main Loop
 print("Flask Comm Simulator: type 'help' for help")

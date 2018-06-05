@@ -21,7 +21,7 @@ if len(sys.argv) < 2:
 import configparser
 config = configparser.ConfigParser()
 config.read(sys.argv[1])
-# Set path is possible
+# Set path if needed
 try:
     sys.path.append(config['paths']['pythonpath'])
 except:
@@ -36,3 +36,4 @@ flask_port = int(config['ports']['flask_output'])
 
 # Run server with testresponse_noanswer function
 commsocket.server(commsocket.testresponse_noanswer, flask_port)
+print("OutputSim - quit")
