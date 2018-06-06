@@ -77,10 +77,10 @@ def server( respfunct, port):
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock.bind(('localhost',port))
     sock.listen(5)
-    print("Server Listening (use Ctrl-c or send 'e', 'q', 'exit' or 'quit' to quit)")
+    print("Server Listening (use Ctrl-c or send 'x', 'q', 'exit' or 'quit' to quit)")
     # Receive loop
     message = ''
-    while not message.strip().lower() in ['e', 'exit', 'q', 'quit']:
+    while not message.strip().lower() in ['x', 'exit', 'q', 'quit']:
         # Get new connection
         conn, addr = sock.accept()
         print('Conected with %s at address %s' % (addr[0],str(addr[1])))
@@ -97,6 +97,16 @@ def server( respfunct, port):
         conn.close()
         print('  Connection Closed')
     print('Server shut down')
+
+def send_log(message, port, sender = 'progpart', level = 'INFO'):
+    """ Send log message to logger, level and sender can be specified
+        Message format is:
+            Level\tSender\tmessage and is sent to port
+        example:
+            INFO\tReadout\tA value of 0.34 was measured
+    """
+    msg = "%s\t%s\t%s" % (level, sender, message)
+    send_msg(msg,port)
 
 def testresponse_noanswer(message):
     """ Test response function without Answer

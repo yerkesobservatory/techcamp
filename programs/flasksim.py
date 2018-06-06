@@ -40,6 +40,7 @@ from bparts import commsocket
 # Globals
 output_port = int(config['ports']['flask_output'])
 insense_port = int(config['ports']['flask_insense'])
+log_port = int(config['ports']['logger'])
 
 ### Main program
 cmd = ''
@@ -53,7 +54,7 @@ while not cmd.lower() in ['exit', 'e', 'x']:
         print(''' Commands
         - exit (or e, x): to exit
         - target message: to send a message to a target
-          valid targets are "output", "insense" and "incam"''')
+          valid targets are "log", "output", "insense" and "incam"''')
         continue
     # Run command
     if not cmd.lower().strip() in ['', 'exit', 'e', 'x']:
@@ -69,6 +70,8 @@ while not cmd.lower() in ['exit', 'e', 'x']:
         elif target.lower() == 'insense':
             response = commsocket.send_recv(message, insense_port)
             print('  Response from InSense: "%s"' % response)
+        elif target.lower() == 'log':
+            commsocket.send_msg(message, log_port)
         else:
             print("  Error: '%s' is invalid target" % target)
     
