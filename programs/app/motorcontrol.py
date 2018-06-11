@@ -1,20 +1,21 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField
-from wtforms.fields.html5 import DecimalRangeField
+from wtforms import SubmitField, SelectField
+from wtforms_components import NumberRangeField
 from wtforms.validators import DataRequired
 
 class submitForm(FlaskForm):
-	submit = SubmitField(label= 'Execute')
+	submit = SubmitField(label= 'Submit')
 
 class mpForm(FlaskForm):
-	power = DecimalRangeField('power', default =0)
+	power = NumberRangeField('power', default =0,)
+
 class mtForm(FlaskForm):
 	time = SelectField(
 		'Time',
-		[('-1','Back 1 sec),('1','Forward 1 sec')]
+		choices=[('-1','Back 1 sec'),('1','Forward 1 sec')]
 	)
 class servoForm(FlaskForm):
 	time = SelectField(
-		'Servo',
-		[('0','Servo 0),('1','Servo 1')]
+		'Time',
+		choices=[('0','Servo 0'),('1','Servo 1')]
 	)

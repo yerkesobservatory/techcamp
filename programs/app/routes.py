@@ -6,7 +6,7 @@ config = configparser.ConfigParser()
 #Reads the master.ini config file in the configs folder
 config.read('../configs/master.ini')
 #Takes the techcamp folder path from the master.ini config file
-techcamp_path = config['paths']['techcamp']
+techcamp_path = config['paths']['pythonpath']
 #Adds the techcamp folder as a system path so that is can find bparts
 sys.path.append(techcamp_path)
 from bparts import commsocket
@@ -16,6 +16,7 @@ from flask import render_template, request
 from app import app
 from app.droneterm import commandForm
 from app.cameracontrol import cameraForm
+from app.motorcontrol import submitForm, mpForm, mtForm, servoForm
 import socket
 from bparts import commsocket
 
@@ -68,7 +69,11 @@ def camera():
 	return render_template('camera.html',form=form)
 @app.route('/motor',methods=['GET','POST'])
 def motor():
-	form=submitForm(request.form)
+	submit=submitForm(request.form)
+	mp=mpForm(request.form)
+	mt=mtForm(request.form)
+	servo=servoForm(request.form)
 	if request.method == 'POST':
-		return render_template('motorcontrol.html',form=form)
+		print('POST')
+	return render_template('motorcontrol.html',submit=submit,mp=mp,servo=servo,mt=mt)
 

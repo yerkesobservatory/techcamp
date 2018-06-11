@@ -1,7 +1,14 @@
-    <h1>Send Command</h1>
-    <form action="" method="post">
-	<p>{{ form.mpForm() }}</p>
-	<p>{{ form.mtForm() }}</p>
-	<p>{{ form.servoForm() }}</p>
-        <p>{{ form.submitForm() }}</p>
-    </form>
+<html>
+	<script>
+	function outputUpdate(power) {
+		document.querySelector('#select-power').value=power
+	}
+	</script>
+	<form action="" method="post">
+		<p>{{ mp.power(min=-255, max=255, oninput="outputUpdate(value)") }}</p>
+		<p><output for="power" id="select-power">{{mp.power.data}}</output>
+		<p>{{ mt.time() }}</p>
+		<p>{{ servo.time() }}</p>
+        	<p>{{ submit.submit() }}</p>
+    	</form>
+</html>
