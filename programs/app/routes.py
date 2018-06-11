@@ -66,4 +66,9 @@ def camera():
 			send_command('incam color')
 			print 'sent incam color'
 	return render_template('camera.html',form=form)
+@app.route('/motor',methods=['GET','POST'])
+def motor():
+	form=submitForm(request.form)
+	if request.method == 'POST':
+		return render_template('motorcontrol.html',form=form)
 

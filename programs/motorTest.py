@@ -3,15 +3,17 @@
 Before using this program, you must follow the instructions on this page:
 https://learn.adafruit.com/adafruit-dc-and-stepper-motor-hat-for-raspberry-pi/installing-software
 """
+from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
+from time import sleep
+message = 'mp1 0'
 
 def gopher(message):
 
 
 	if message[0:2] == 'mp':
 		# Initialze
-		from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
 		mh = Adafruit_MotorHAT(addr=0x60)
-	
+
 		# Get motor
 		motor = mh.getMotor(int(message[2]))
 
@@ -24,22 +26,21 @@ def gopher(message):
 			direction = Adafruit_MotorHAT.RELEASE
 			speed = 0
 		else:
-			direction = Adafruit_MotorHat.FORWARD
+			direction = Adafruit_MotorHAT.FORWARD
 			speed = int(dirSpeed)
 
 		# Set direction
 		motor.run(direction)
 
 		#Set speed
-		motor.setSpeed(speed * 2.55)
+		motor.setSpeed(speed)
 
-		
+
 	if message[0:2] == 'mt':
 		# Initialze
-		from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
-		from time import sleep
+		#from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
 		mh = Adafruit_MotorHAT(addr=0x60)
-	
+
 		# Get motor
 		motor = mh.getMotor(int(message[2]))
 
@@ -48,7 +49,7 @@ def gopher(message):
 		if dirTime[0:2] == '-1':
 			direction = Adafruit_MotorHAT.BACKWARD
 			time = int(dirTime[3:])
-			
+
 		elif dirTime[0] == '1':
 			direction = Adafruit_MotorHAT.FORWARD
 			time = int(dirTime[2:])
@@ -60,4 +61,5 @@ def gopher(message):
 		motor.setSpeed(255)
 		sleep(time)
 		motor.run(Adafruit_MotorHAT.RELEASE)
-		motor.setspeed(0)
+		motor.setSpeed(0)
+gopher(message)
