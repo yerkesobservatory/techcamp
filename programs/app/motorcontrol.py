@@ -1,13 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, SelectField
-from wtforms_components import NumberRangeField
-from wtforms.validators import DataRequired
+from wtforms import SubmitField, SelectField, RadioField, IntegerField, validators
 
 class submitForm(FlaskForm):
 	submit = SubmitField(label= 'Submit')
 
 class mpForm(FlaskForm):
-	power = NumberRangeField('power', default =0,)
+	power = IntegerField("Power",[validators.NumberRange(min=-255,max=255,message="Must be between -255 and 255")])
 
 class mtForm(FlaskForm):
 	time = SelectField(

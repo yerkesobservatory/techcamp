@@ -5,7 +5,7 @@ https://learn.adafruit.com/adafruit-dc-and-stepper-motor-hat-for-raspberry-pi/in
 """
 from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
 from time import sleep
-message = 'mp1 0'
+message = 'mp1 255'
 
 def gopher(message):
 

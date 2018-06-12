@@ -12,7 +12,7 @@ sys.path.append(techcamp_path)
 from bparts import commsocket
 
 # Imports 
-from flask import render_template, request
+from flask import render_template, request, flash
 from app import app
 from app.droneterm import commandForm
 from app.cameracontrol import cameraForm
@@ -74,6 +74,9 @@ def motor():
 	mt=mtForm(request.form)
 	servo=servoForm(request.form)
 	if request.method == 'POST':
-		print('POST')
+		if mp.validate_on_submit():
+			flash("Post Successfull")
+		else:
+			flash("ERROR")
 	return render_template('motorcontrol.html',submit=submit,mp=mp,servo=servo,mt=mt)
 

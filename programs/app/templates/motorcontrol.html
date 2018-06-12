@@ -1,14 +1,17 @@
 <html>
 	<script>
 	function outputUpdate(power) {
-		document.querySelector('#select-power').value=power
+		document.querySelector('#select-power').value=power;
 	}
 	</script>
-	<form action="" method="post">
-		<p>{{ mp.power(min=-255, max=255, oninput="outputUpdate(value)") }}</p>
-		<p><output for="power" id="select-power">{{mp.power.data}}</output>
-		<p>{{ mt.time() }}</p>
-		<p>{{ servo.time() }}</p>
-        	<p>{{ submit.submit() }}</p>
-    	</form>
+	{% extends "layout.html" %}
+	{% block body %}
+		<form action="" method="post">
+			<p>{{ mp.power(min=-255, max=255, oninput="outputUpdate(value)") }}</p>
+			<p><output for="power" id="select-power">{{mp.power.data}}</output>
+			<p>{{ mt.time() }}</p>
+			<p>{{ servo.time() }}</p>
+	        	<p>{{ submit.submit() }}</p>
+	    	</form>
+	{% endblock %}
 </html>
