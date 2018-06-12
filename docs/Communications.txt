@@ -7,7 +7,7 @@ Flask -> Output
 ---------------
 
 Motor Communication:
-"mp# (-100 - 100) //-#: motor backward at #% power; 0: stop motor; #: motor forward at #% power
+"mp# (-255 - 255) //-#: motor backward at #% power; 0: stop motor; #: motor forward at #% power
 "mt# (-1 / 1) time //-#: motor run forward / backward for time
 
 Servo Communication:
