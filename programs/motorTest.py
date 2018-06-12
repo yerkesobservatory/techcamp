@@ -12,7 +12,7 @@ def gopher(message):
 
 	if message[0:2] == 'mp':
 		# Initialze
-		mh = Adafruit_MotorHAT(addr=0x60)
+		mh = Adafruit_MotorHAT(addr=0x62)
 
 		# Get motor
 		motor = mh.getMotor(int(message[2]))
@@ -39,7 +39,7 @@ def gopher(message):
 	if message[0:2] == 'mt':
 		# Initialze
 		#from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
-		mh = Adafruit_MotorHAT(addr=0x60)
+		mh = Adafruit_MotorHAT(addr=0x62)
 
 		# Get motor
 		motor = mh.getMotor(int(message[2]))
