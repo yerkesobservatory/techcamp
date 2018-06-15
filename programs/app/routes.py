@@ -16,7 +16,7 @@ from flask import render_template, request, flash
 from app import app
 from app.droneterm import commandForm
 from app.cameracontrol import cameraForm
-from app.motorcontrol import submitForm, mpForm, mtForm, servoForm
+from app.motorcontrol import submitForm, mpForm, mtForm, motorForm
 import socket
 from bparts import commsocket
 
@@ -71,12 +71,23 @@ def camera():
 def motor():
 	submit=submitForm(request.form)
 	mp=mpForm(request.form)
-	mt=mtForm(request.form)
-	servo=servoForm(request.form)
+	mt=mtForm()
+	motor=motorForm()
 	if request.method == 'POST':
-		if mp.validate_on_submit():
-			flash("Post Successfull")
+
+		power=mp.power.data
+		time=mt.time.data
+
+		if -255<=power<=255:
+			flash("Power set for (%d)"%power)
 		else:
-			flash("ERROR")
-	return render_template('motorcontrol.html',submit=submit,mp=mp,servo=servo,mt=mt)
+			flash("Power outside of range(-255,255)")
+
+		if -1<time<1:
+			flash("Time set for (%d)"%time)
+		else:
+			flash("Time outside of range(-1,1)")
+
+		
+	return render_template('motorcontrol.html',submit=submit,mp=mp,motor=motor,mt=mt)
 

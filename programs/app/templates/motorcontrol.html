@@ -1,16 +1,12 @@
 <html>
-	<script>
-	function outputUpdate(power) {
-		document.querySelector('#select-power').value=power;
-	}
-	</script>
 	{% extends "layout.html" %}
 	{% block body %}
 		<form action="" method="post">
+			<p><h2>Motor Power</h2></p>
 			<p>{{ mp.power(min=-255, max=255, oninput="outputUpdate(value)") }}</p>
-			<p><output for="power" id="select-power">{{mp.power.data}}</output>
+			<p><h2>Motor Time</h2></p>
 			<p>{{ mt.time() }}</p>
-			<p>{{ servo.time() }}</p>
+			<p>{{ motor.motor() }}</p>
 	        	<p>{{ submit.submit() }}</p>
 	    	</form>
 	{% endblock %}

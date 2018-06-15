@@ -5,15 +5,13 @@ class submitForm(FlaskForm):
 	submit = SubmitField(label= 'Submit')
 
 class mpForm(FlaskForm):
-	power = IntegerField("Power",[validators.NumberRange(min=-255,max=255,message="Must be between -255 and 255")])
+	power = IntegerField("Power",default=0)
 
 class mtForm(FlaskForm):
-	time = SelectField(
-		'Time',
-		choices=[('-1','Back 1 sec'),('1','Forward 1 sec')]
-	)
-class servoForm(FlaskForm):
-	time = SelectField(
-		'Time',
-		choices=[('0','Servo 0'),('1','Servo 1')]
+	time = IntegerField("Time",default=0)
+
+class motorForm(FlaskForm):
+	motor = SelectField(
+		'motor',
+		choices=[(0,'Select Motor'),(1,'Motor 1'),(2,'Motor 2'),(3,'Both')]
 	)
