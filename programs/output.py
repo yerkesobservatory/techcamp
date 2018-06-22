@@ -78,6 +78,15 @@ def executor():
         while time.time() - timesec < timedelay :
             time.sleep(0.5)
         ### EXECUTE MESSAGES HERE
+        if message[0:2] == 'mp': 
+            # Execute motor power command 
+            pass
+        if message[0:2] == 'mt': 
+            # Execute motor time command 
+            pass
+        if message[0] == 's':
+            # Execute servo command
+            pass
         commsocket.send_log('Executed: %s' % message, logport, 'output.execute', 'INFO')
     # Sleep a bit to make sure all messages are out and threads can close
     time.sleep(0.2)

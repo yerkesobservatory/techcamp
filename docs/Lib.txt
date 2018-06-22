@@ -1,0 +1,13 @@
+List of requires libraries and what progam needs them
+configparser	Needed for getting config files
+socket		Required for communication between programs
+threading	Required for threading in incam and output
+picamera	Needed for incam to communicate with the camera
+Queue		Needed for threading to prevent errors
+sleep		Needed to add delays in the program
+datetime	Needed for incam and input for labeling the time
+bparts		Local Library required for socket communication
+flask		Required for routes and all web interface programs
+flask_wtf	Required for all pages for data input
+logging 	Required for output for logging data
+

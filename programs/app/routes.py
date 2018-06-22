@@ -6,16 +6,17 @@ config = configparser.ConfigParser()
 #Reads the master.ini config file in the configs folder
 config.read('../configs/master.ini')
 #Takes the techcamp folder path from the master.ini config file
-techcamp_path = config['paths']['techcamp']
+techcamp_path = config['paths']['pythonpath']
 #Adds the techcamp folder as a system path so that is can find bparts
 sys.path.append(techcamp_path)
 from bparts import commsocket
 
 # Imports 
-from flask import render_template, request
+from flask import render_template, request, flash
 from app import app
 from app.droneterm import commandForm
 from app.cameracontrol import cameraForm
+from app.motorcontrol import submitForm, mpForm, mtForm, motorForm
 import socket
 from bparts import commsocket
 
@@ -66,4 +67,27 @@ def camera():
 			send_command('incam color')
 			print 'sent incam color'
 	return render_template('camera.html',form=form)
+@app.route('/motor',methods=['GET','POST'])
+def motor():
+	submit=submitForm(request.form)
+	mp=mpForm(request.form)
+	mt=mtForm()
+	motor=motorForm()
+	if request.method == 'POST':
+
+		power=mp.power.data
+		time=mt.time.data
+
+		if -255<=power<=255:
+			flash("Power set for (%d)"%power)
+		else:
+			flash("Power outside of range(-255,255)")
+
+		if -1<time<1:
+			flash("Time set for (%d)"%time)
+		else:
+			flash("Time outside of range(-1,1)")
+
+		
+	return render_template('motorcontrol.html',submit=submit,mp=mp,motor=motor,mt=mt)
 

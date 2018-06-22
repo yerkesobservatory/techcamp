@@ -7,8 +7,11 @@ Flask -> Output
 ---------------
 
 Motor Communication:
-"m# (-100 - 100) //-#: motor backward at #% power; 0: stop motor; #: motor forward at #% power
-"m# (-1 / 1) time //-#: motor run forward / backward for time
+"mp# (-255 - 255) //-#: motor backward at #% power; 0: stop motor; #: motor forward at #% power
+"mt# (-1 / 1) time //-#: motor run forward / backward for time
+
+Servo Communication:
+"s# (0 - 100) // servo number, direction from 0 to 100
 
 Led Communication:
 "led# #" //The second # indicates the power of led upto 255; Example: led1 255 // Led1 is at full power
