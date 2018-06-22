@@ -1,7 +1,10 @@
 import pylab
 import numpy as np
+import os
 
-lines = [l for l in file('/media/ascerba/F84E-1690/DATALOG.txt') if len(l) > 5]
+fname = '/home/ascerba/Documents/DATALOG.TXT'
+
+lines = [l for l in open(fname) if len(l) > 5]
 print(lines[:10])
 times = []
 locs = []
@@ -15,8 +18,9 @@ for l in lines:
         locs.append(l[10:])
     if 'Altitude' in l:
         alts.append(l[10:])
-    if 'quality: 0' in l:
-        del record[-1]
+    if 'Fix' in l and not 'Fix: 1 quality: 1' in l:
+        print(repr(times),repr(locs),repr(alts))
+        del times[-1]
         
 n = len(times)
 timearr = np.zeros([n])
