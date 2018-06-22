@@ -45425,7 +45425,7 @@ Location: 0.0424N, 8833.3769W
 Speed (knots): 1.13
 Angle: 3229.00
 Altitude: 193810.00
-Satellites: 69
+Satellites: 691
 
 Time: 19:38:11.0
 Date: 0/0/2068

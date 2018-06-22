@@ -2,7 +2,7 @@ import pylab
 import numpy as np
 import os
 
-fname = '/home/ascerba/Documents/DATALOG.TXT'
+fname = '/home/ascerba/github_repos/techcamp/users/ascerba/DATALOG.TXT'
 
 lines = [l for l in open(fname) if len(l) > 5]
 print(lines[:10])
