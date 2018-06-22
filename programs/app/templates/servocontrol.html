@@ -1,0 +1,11 @@
+<html>
+	{% extends "layout.html" %}
+	{% block body %}
+		<form action="" method="post">
+			<p><h2>Servo Direction</h2></p>
+			<p>{{ direction.direction() }}</p>
+			<p>{{ servo.servo() }}</p>
+	        	<p>{{ submit.submit() }}</p>
+	    	</form>
+	{% endblock %}
+</html>

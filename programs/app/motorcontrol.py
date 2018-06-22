@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, SelectField, RadioField, IntegerField, FloatField
+from wtforms import SubmitField, SelectField, IntegerField, FloatField
 
 class submitForm(FlaskForm):
 	submit = SubmitField(label= 'Submit')
