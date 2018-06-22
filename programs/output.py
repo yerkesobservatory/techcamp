@@ -93,7 +93,7 @@ def executor():
 
 # Logging thread function
 def logger():
-    """ Thread which sets up the logging then starts a
+    """ Sets up the logging then starts a
         socket server which logs incoming messages.
     """
     # Set up logging
