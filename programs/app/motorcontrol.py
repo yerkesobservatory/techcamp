@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, SelectField, RadioField, IntegerField, validators
+from wtforms import SubmitField, SelectField, RadioField, IntegerField, FloatField
 
 class submitForm(FlaskForm):
 	submit = SubmitField(label= 'Submit')
@@ -8,7 +8,7 @@ class mpForm(FlaskForm):
 	power = IntegerField("Power",default=0)
 
 class mtForm(FlaskForm):
-	time = IntegerField("Time",default=0)
+	time = FloatField("Time",default=0)
 
 class motorForm(FlaskForm):
 	motor = SelectField(

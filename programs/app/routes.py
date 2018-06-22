@@ -65,7 +65,7 @@ def camera():
 	if request.method == 'POST':
 		if form.takeimg.data == 1:
 			send_command('incam color')
-			print 'sent incam color'
+			print('sent incam color')
 	return render_template('camera.html',form=form)
 @app.route('/motor',methods=['GET','POST'])
 def motor():
@@ -74,20 +74,46 @@ def motor():
 	mt=mtForm()
 	motor=motorForm()
 	if request.method == 'POST':
-
+	
+		validator=[0,0,0]
+		#Gets the data from the inputs
 		power=mp.power.data
 		time=mt.time.data
-
+		motorSet=int(motor.motor.data)
+		
+		#Checks is the motor power input was valid
 		if -255<=power<=255:
 			flash("Power set for (%d)"%power)
+			validator[0]=1
 		else:
 			flash("Power outside of range(-255,255)")
-
-		if -1<time<1:
-			flash("Time set for (%d)"%time)
+		#Checks if the time input was valid
+		if -1<=time<=1:
+			flash("Time set for (%f)"%time)
+			validator[1]=1
 		else:
 			flash("Time outside of range(-1,1)")
-
+			
+		#Check what motors were selected
+		if motorSet == 0:
+			flash("Please Select a Motor")
+		elif motorSet == 1:
+			flash("Motor 1 selected")
+			validator[2]=1
+		elif motorSet == 2:
+			flash("Motor 2 selected")
+			validator[2]=1
+		elif motorSet == 3:
+			flash("Both Motors selected")
+			validator[2]=1
+		
+		#checks validators
+		if all(i == 1 for i in validator):
+			flash("It Worked")
+			flash(("Sent command 'mp{0} {1} {2}'").format(motorSet,power,time))
+			send_command(("mp{0} {1} {2}").format(motorSet,power,time))
+		else:
+			flash("It didnt")
 		
 	return render_template('motorcontrol.html',submit=submit,mp=mp,motor=motor,mt=mt)
 
