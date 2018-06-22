@@ -79,19 +79,21 @@ for i in range(1,n-1):
     if heiarr[i] == 0 and heiarr[i-1] > 0 and heiarr[i+1] > 0:
         heiarr[i] = ( heiarr[i-1]+heiarr[i+1] ) / 2
 
-# Save File
-outf = open(fname.replace('.TXT','_Red.TXT'),'wt')
-outf.write('Time\tLon\tLat\tHei\r\n')
-for i in range(n):
-    outf.write('%.1f\t%.5f\t%.5f\t%.1f\r\n' % (timearr[i], lonarr[i], latarr[i], heiarr[i]))
-outf.close()
 ### Filter lon/lat data
+# Use approximation that 1 deg is 111111meters
 lonmed = np.median(lonarr)
 latmed = np.median(latarr)
 lonarr -=lonmed
 latarr -=latmed
 lonarr *= 111111.1
 latarr *= 111111.1 * math.cos(math.pi * latmed / 180.)
+
+# Save File
+outf = open(fname.replace('.TXT','_Red.TXT'),'wt')
+outf.write('Time\tLon\tLat\tHei\r\n')
+for i in range(n):
+    outf.write('%.1f\t%.5f\t%.5f\t%.1f\r\n' % (timearr[i], lonarr[i], latarr[i], heiarr[i]))
+outf.close()
 
 # Plots
 pylab.subplot(4,1,2)
