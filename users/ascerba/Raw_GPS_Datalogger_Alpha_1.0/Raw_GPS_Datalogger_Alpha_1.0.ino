@@ -8,13 +8,15 @@ void setup() {
   Serial.begin(9600);
   Serial1.begin(9600);      // default NMEA GPS baud
   
-  Serial.print("Initializing SD card...");
-
-  if (!SD.begin(chipSelect)) {
+/*  if (!SD.begin(chipSelect)) {
     Serial.println("card failed, or not present.");
     while (1);
-  }
-  Serial.println("card initialized.");
+    }
+  Serial.println("card initialized.");*/
+
+  // There is something wrong with the above section of code.
+  // It messes with the output of the serial connection and
+  // inserts random characters and deletes others.
 }
      
 void loop() {
@@ -24,13 +26,13 @@ void loop() {
   if (Serial.available()) {
     char c = Serial.read();
     Serial1.write(c);
-    dataFile.print(c);
+    dataFile.write(c);
     dataFile.close();
   }
   if (Serial1.available()) {
     char c = Serial1.read();
     Serial.write(c);
-    dataFile.print(c);
+    dataFile.write(c);
     dataFile.close();
   }
 }
