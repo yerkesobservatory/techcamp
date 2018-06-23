@@ -33,8 +33,19 @@ for l in lines:
     if 'Altitude' in l:
         alts.append(l[10:])
     if 'Fix' in l and not 'Fix: 1 quality:' in l:
-        del times[-1]
+        if len(times) > 0:
+            del times[-1]
+    if 'Fix: 1 quality: 0' in l:
+        if len(times) > 0:
+            del times[-1]
+        if len(locs) > 0:
+            del locs[-1]
+        if len(alts) > 0:
+            del alts[-1]
 
+n = len(times)
+locs = locs[:n]
+alts = alts[:n]
 if len(times) != len(locs) or len(times) != len(alts):
     print("Error: Arrays of unequal lengths:", len(times), len(locs), len(alts))
     exit(1)

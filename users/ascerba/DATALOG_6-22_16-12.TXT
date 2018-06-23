@@ -1,0 +1,459 @@
+
+Time: 20:33:27.0
+Date: 0/2/2068
+Fix: 1 quality: 0
+Location: 4234.2045N, 8833.3447W
+Speed (knots): 0.27
+Angle: 78.60
+Altitude: 0.00
+Satellites: 0
+
+Time: 20:33:28.0
+Date: 0/2/2068
+Fix: 1 quality: 0
+Location: 4234.2065N, 8833.3466W
+Speed (knots): 0.21
+Angle: 3421.00
+Altitude: 0.00
+Satellites: 0
+
+Time: 20:33:28.984
+Date: 0/2/2061
+Fix: 1 quality: 0
+Location: 4234.2065N, 8833.3476W
+Speed (knots): 0.24
+Angle: 3009.00
+Altitude: 0.00
+Satellites: 0
+
+Time: 20:33:30.0
+Date: 0/2/2068
+Fix: 1 quality: 0
+Location: 4234.2055N, 8833.3476W
+Speed (knots): 0.30
+Angle: 2806.00
+Altitude: 0.00
+Satellites: 0
+
+Time: 20:33:31.0
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 4234.2055N, 8833.3476W
+Speed (knots): 0.30
+Angle: 2806.00
+Altitude: 322.70
+Satellites: 6
+
+Time: 20:33:32.0
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 4234.2045N, 8833.3476W
+Speed (knots): 0.31
+Angle: 3245.00
+Altitude: 322.70
+Satellites: 6
+
+Time: 20:33:32.984
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 4234.2045N, 8833.3466W
+Speed (knots): 0.31
+Angle: 3245.00
+Altitude: 322.10
+Satellites: 6
+
+Time: 20:33:34.0
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 4234.2041N, 8833.3466W
+Speed (knots): 0.31
+Angle: 317.02
+Altitude: 322.10
+Satellites: 6
+
+Time: 20:33:36.0
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 4234.2036N, 8833.3466W
+Speed (knots): 0.31
+Angle: 317.02
+Altitude: 321.10
+Satellites: 6
+
+Time: 20:33:36.0
+Date: 0/2/2068
+Fix: 1 quality: 0
+Location: 0.0424N, 8833.3466W
+Speed (knots): 0.31
+Angle: 317.02
+Altitude: 0.00
+Satellites: 63
+
+Time: 20:33:38.0
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 4234.2031N, 8833.3457W
+Speed (knots): 0.31
+Angle: 317.02
+Altitude: 320.70
+Satellites: 6
+
+Time: 20:33:39.0
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 4234.2026N, 8833.3457W
+Speed (knots): 0.23
+Angle: 317.82
+Altitude: 320.70
+Satellites: 6
+
+Time: 20:33:40.0
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 4234.2026N, 8833.3447W
+Speed (knots): 0.29
+Angle: 334.22
+Altitude: 320.70
+Satellites: 6
+
+Time: 20:33:40.984
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 4234.2021N, 8833.3447W
+Speed (knots): 0.36
+Angle: 328.72
+Altitude: 320.70
+Satellites: 6
+
+Time: 20:33:42.0
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 4234.2016N, 8833.3437W
+Speed (knots): 0.36
+Angle: 328.72
+Altitude: 318.20
+Satellites: 6
+
+Time: 20:33:43.0
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 4234.2011N, 8833.3427W
+Speed (knots): 0.15
+Angle: 276.42
+Altitude: 318.20
+Satellites: 6
+
+Time: 20:33:44.0
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 4234.2006N, 8833.3427W
+Speed (knots): 0.12
+Angle: 309.92
+Altitude: 318.20
+Satellites: 6
+
+Time: 20:33:44.984
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 4234.2006N, 8833.3427W
+Speed (knots): 0.27
+Angle: 331.62
+Altitude: 318.20
+Satellites: 6
+
+Time: 20:33:46.0
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 4234.2006N, 8833.3427W
+Speed (knots): 0.29
+Angle: 328.32
+Altitude: 318.20
+Satellites: 6
+
+Time: 20:33:47.0
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 4234.2006N, 8833.3427W
+Speed (knots): 0.24
+Angle: 326.72
+Altitude: 318.20
+Satellites: 6
+
+Time: 20:33:48.0
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 4234.2006N, 8833.3427W
+Speed (knots): 0.24
+Angle: 326.72
+Altitude: 316.20
+Satellites: 6
+
+Time: 20:33:48.984
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 4234.2006N, 8833.3427W
+Speed (knots): 0.29
+Angle: 3409.00
+Altitude: 316.20
+Satellites: 6
+
+Time: 20:33:50.0
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 4234.2006N, 8833.3427W
+Speed (knots): 0.24
+Angle: 344.82
+Altitude: 316.20
+Satellites: 6
+
+Time: 20:33:51.0
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 4234.2011N, 8833.3427W
+Speed (knots): 0.24
+Angle: 344.82
+Altitude: 316.20
+Satellites: 6
+
+Time: 20:34:0.984
+Date: 0/2/2068
+Fix: 1 quality: 0
+Location: 0.0424N, 8833.3427W
+Speed (knots): 0.24
+Angle: 344.82
+Altitude: 203402.00
+Satellites: 13
+
+Time: 20:34:16.984
+Date: 0/2/2068
+Fix: 1 quality: 0
+Location: 0.0424N, 8833.3427W
+Speed (knots): 0.24
+Angle: 344.82
+Altitude: 0.00
+Satellites: 59
+
+Time: 20:34:34.0
+Date: 0/2/2068
+Fix: 1 quality: 0
+Location: 4234.2001N, 8833.3437W
+Speed (knots): 0.12
+Angle: 162.22
+Altitude: 0.00
+Satellites: 59
+
+Time: 20:34:48.984
+Date: 0/2/2068
+Fix: 1 quality: 0
+Location: 0.0424N, 8833.3437W
+Speed (knots): 0.12
+Angle: 162.22
+Altitude: 0.00
+Satellites: 250
+
+Time: 20:35:6.0
+Date: 0/2/2068
+Fix: 1 quality: 0
+Location: 4234.2011N, 8833.3437W
+Speed (knots): 0.16
+Angle: 3407.00
+Altitude: 0.00
+Satellites: 250
+
+Time: 20:35:22.0
+Date: 0/2/2068
+Fix: 1 quality: 0
+Location: 4234.2021N, 8833.3437W
+Speed (knots): 0.31
+Angle: 32.36
+Altitude: 0.00
+Satellites: 250
+
+Time: 20:35:38.0
+Date: 0/2/2068
+Fix: 1 quality: 2
+Location: 4234.2050N, 8833.3408W
+Speed (knots): 0.31
+Angle: 32.36
+Altitude: 317.40
+Satellites: 7
+
+Time: 20:35:55.0
+Date: 0/2/2068
+Fix: 1 quality: 2
+Location: 4234.2036N, 8833.3408W
+Speed (knots): 0.31
+Angle: 32.36
+Altitude: 317.80
+Satellites: 7
+
+Time: 20:36:10.0
+Date: 0/2/2068
+Fix: 1 quality: 0
+Location: 0.0424N, 8833.3437W
+Speed (knots): 0.31
+Angle: 32.36
+Altitude: 203611.00
+Satellites: 12
+
+Time: 20:36:27.0
+Date: 0/2/2068
+Fix: 1 quality: 0
+Location: 4234.2016N, 8833.3437W
+Speed (knots): 0.00
+Angle: 6.02
+Altitude: 203611.00
+Satellites: 12
+
+Time: 20:36:42.0
+Date: 0/2/2068
+Fix: 1 quality: 0
+Location: 0.0424N, 8833.3437W
+Speed (knots): 0.00
+Angle: 6.02
+Altitude: 203643.00
+Satellites: 12
+
+Time: 20:36:58.0
+Date: 0/2/2068
+Fix: 1 quality: 0
+Location: 0.0424N, 8833.3437W
+Speed (knots): 0.00
+Angle: 6.02
+Altitude: 0.00
+Satellites: 5
+
+Time: 20:37:14.0
+Date: 0/2/2068
+Fix: 1 quality: 0
+Location: 0.0424N, 8833.3437W
+Speed (knots): 0.00
+Angle: 6.02
+Altitude: 0.00
+Satellites: 20
+
+Time: 20:37:31.0
+Date: 0/0/200
+Fix: 1 quality: 0
+Location: 4234.2026N, 8833.3427W
+Speed (knots): 0.76
+Angle: 6.02
+Altitude: 0.00
+Satellites: 20
+
+Time: 20:37:47.0
+Date: 0/0/200
+Fix: 1 quality: 2
+Location: 4234.2031N, 8833.3437W
+Speed (knots): 0.76
+Angle: 6.02
+Altitude: 322.40
+Satellites: 8
+
+Time: 20:38:3.0
+Date: 0/0/200
+Fix: 1 quality: 0
+Location: 0.0424N, 8833.3330W
+Speed (knots): 0.76
+Angle: 6.02
+Altitude: 0.00
+Satellites: 77
+
+Time: 20:38:20.0
+Date: 0/0/200
+Fix: 1 quality: 2
+Location: 4234.2026N, 8833.3281W
+Speed (knots): 0.76
+Angle: 6.02
+Altitude: 326.90
+Satellites: 8
+
+Time: 20:38:36.0
+Date: 0/0/200
+Fix: 1 quality: 2
+Location: 4234.2026N, 8833.3281W
+Speed (knots): 7.92
+Angle: 6.02
+Altitude: 326.90
+Satellites: 8
+
+Time: 20:38:52.0
+Date: 0/0/200
+Fix: 1 quality: 2
+Location: 4234.2021N, 8833.3281W
+Speed (knots): 0.62
+Angle: 6.02
+Altitude: 326.90
+Satellites: 8
+
+Time: 20:39:8.0
+Date: 0/0/200
+Fix: 1 quality: 2
+Location: 4234.2026N, 8833.3281W
+Speed (knots): 0.87
+Angle: 6.02
+Altitude: 326.90
+Satellites: 8
+
+Time: 20:39:24.0
+Date: 0/0/200
+Fix: 1 quality: 2
+Location: 4234.2026N, 8833.3281W
+Speed (knots): 0.14
+Angle: 201.00
+Altitude: 326.90
+Satellites: 8
+
+Time: 20:39:40.0
+Date: 0/0/200
+Fix: 1 quality: 2
+Location: 4234.2021N, 8833.3281W
+Speed (knots): 9.00
+Angle: 9.72
+Altitude: 326.90
+Satellites: 8
+
+Time: 20:39:56.0
+Date: 0/2/2068
+Fix: 1 quality: 2
+Location: 4234.1997N, 8833.3291W
+Speed (knots): 0.00
+Angle: 10.00
+Altitude: 326.90
+Satellites: 8
+
+Time: 20:40:12.984
+Date: 0/2/2068
+Fix: 1 quality: 2
+Location: 4234.2006N, 8833.3349W
+Speed (knots): 0.00
+Angle: 10.00
+Altitude: 322.20
+Satellites: 8
+
+Time: 20:40:28.984
+Date: 0/2/2068
+Fix: 1 quality: 2
+Location: 4234.1997N, 8833.3408W
+Speed (knots): 0.00
+Angle: 10.00
+Altitude: 321.10
+Satellites: 8
+
+Time: 20:40:44.984
+Date: 0/2/2068
+Fix: 1 quality: 2
+Location: 4234.1992N, 8833.3437W
+Speed (knots): 0.00
+Angle: 10.00
+Altitude: 320.10
+Satellites: 8
+
+Time: 20:41:0.0
+Date: 0/2/2068
+Fix: 1 quality: 1
+Location: 0.0424N, 8833.3437W
+Speed (knots): 0.00
+Angle: 10.00
+Altitude: 0.00
+Satellites: 5
