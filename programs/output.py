@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 
 ''' Output Server
@@ -32,11 +33,13 @@ logport = int(config['ports']['logger'])
 
 # Imports 
 import time
+from time import sleep
 import socket
 from bparts import commsocket
 import queue
 import threading
 import logging
+from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
 
 ### Thread functions
 
@@ -78,12 +81,24 @@ def executor():
         while time.time() - timesec < timedelay :
             time.sleep(0.5)
         ### EXECUTE MESSAGES HERE
-        if message[0:2] == 'mp': 
-            # Execute motor power command 
-            pass
-        if message[0:2] == 'mt': 
-            # Execute motor time command 
-            pass
+        if message[0] == 'm': 
+                mh =Adafruit_MotorHAT(addr=0x60)
+                motor=mh.getMotor(int(message[1]))
+                if message[3]=='-':
+                        direction =Adafruit_MotorHAT.BACKWARD
+                        speed=int(message[4:6])
+                elif message[3]==0:
+                        direction=Adafruit_MotorHAT.RELEASE
+                        speed=0
+                else:
+                        direction=Adafruit_MotorHAT.FORWARD
+                        speed=int(message[3:5])
+                motor.run(direction)
+                motor.setSpeed(speed)
+                if float(message[7:])!=0:
+                        sleep(float(message[7:]))
+                        motor.run(Adafruit_MotorHAT.RELEASE)
+                pass
         if message[0] == 's':
             # Execute servo command
             pass

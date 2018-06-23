@@ -5,18 +5,12 @@ https://learn.adafruit.com/adafruit-dc-and-stepper-motor-hat-for-raspberry-pi/in
 """
 from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
 from time import sleep
-message = 'mp1 255'
+message = 'mp1 100'
 
 def gopher(message):
-
-
+	mh = Adafruit_MotorHAT(addr=0x60)
+	motor = mh.getMotor(int(message[2]))
 	if message[0:2] == 'mp':
-		# Initialze
-		mh = Adafruit_MotorHAT(addr=0x62)
-
-		# Get motor
-		motor = mh.getMotor(int(message[2]))
-
 		#Get direction and speed
 		dirSpeed = message[4:]
 		if dirSpeed[0] == '-':

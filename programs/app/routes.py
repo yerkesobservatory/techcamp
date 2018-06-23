@@ -21,7 +21,7 @@ import socket
 from bparts import commsocket
 
 # Globals
-output_port = 50747
+output_port = 50749
 insense_port = 50748
 
 #Functions
@@ -74,13 +74,13 @@ def motor():
 	mt=mtForm()
 	motor=motorForm()
 	if request.method == 'POST':
-	
+
 		validator=[0,0,0]
 		#Gets the data from the inputs
 		power=mp.power.data
 		time=mt.time.data
 		motorSet=int(motor.motor.data)
-		
+
 		#Checks is the motor power input was valid
 		if -255<=power<=255:
 			flash("Power set for (%d)"%power)
@@ -93,7 +93,7 @@ def motor():
 			validator[1]=1
 		else:
 			flash("Time outside of range(-1,1)")
-			
+
 		#Check what motors were selected
 		if motorSet == 0:
 			flash("Please Select a Motor")
@@ -106,14 +106,14 @@ def motor():
 		elif motorSet == 3:
 			flash("Both Motors selected")
 			validator[2]=1
-		
+
 		#checks validators
 		if all(i == 1 for i in validator):
 			flash("It Worked")
-			flash(("Sent command 'mp{0} {1} {2}'").format(motorSet,power,time))
-			send_command(("mp{0} {1} {2}").format(motorSet,power,time))
+			flash(("Sent command 'output m{0} {1:03} {2}'").format(motorSet,power,time))
+			send_command(("output m{0} {1:03} {2}").format(motorSet,power,time))
 		else:
-			flash("It didnt")
-		
+			flash("Message not sent, check errors")
+
 	return render_template('motorcontrol.html',submit=submit,mp=mp,motor=motor,mt=mt)
 
