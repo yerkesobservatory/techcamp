@@ -39,7 +39,12 @@ from bparts import commsocket
 import queue
 import threading
 import logging
-from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
+from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor #Motor HAT
+import Adafruit_PCA9685 #Servo HAT
+
+#HAT i2c addresses
+motorHatAddr = 0x60
+servoHatAddr = 0x60
 
 ### Thread functions
 
@@ -82,7 +87,7 @@ def executor():
             time.sleep(0.5)
         ### EXECUTE MESSAGES HERE
         if message[0] == 'm': 
-                mh =Adafruit_MotorHAT(addr=0x60)
+                mh =Adafruit_MotorHAT(address=motorHatAddr)
                 motor=mh.getMotor(int(message[1]))
                 if message[3]=='-':
                         direction =Adafruit_MotorHAT.BACKWARD
@@ -100,7 +105,11 @@ def executor():
                         motor.run(Adafruit_MotorHAT.RELEASE)
                 pass
         if message[0] == 's':
-            # Execute servo command
+            #Servo
+            pwm = Adafruit_PCA9685.PCA9685(address=servoHatAddr)
+            pwm.set_pwm_freq(60)
+            pwm.set_pwm(int(message[1]),0,int(message[3:])
+            time.sleep(1)
             pass
         commsocket.send_log('Executed: %s' % message, logport, 'output.execute', 'INFO')
     # Sleep a bit to make sure all messages are out and threads can close

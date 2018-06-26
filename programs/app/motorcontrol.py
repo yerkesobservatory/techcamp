@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, SelectField, IntegerField, FloatField
+from wtforms import SubmitField, RadioField, IntegerField, FloatField
 
 class submitForm(FlaskForm):
 	submit = SubmitField(label= 'Submit')
@@ -11,7 +11,7 @@ class mtForm(FlaskForm):
 	time = FloatField("Time",default=0)
 
 class motorForm(FlaskForm):
-	motor = SelectField(
+	motor = RadioField(
 		'motor',
-		choices=[(0,'Select Motor'),(1,'Motor 1'),(2,'Motor 2'),(3,'Both')]
+		choices=[(1,'Motor 1'),(2,'Motor 2'),(3,'Motor 3'),(4,'Motor 4')]
 	)

@@ -17,6 +17,7 @@ from app import app
 from app.droneterm import commandForm
 from app.cameracontrol import cameraForm
 from app.motorcontrol import submitForm, mpForm, mtForm, motorForm
+from app.servocontrol import submitForm, servoForm, positionForm
 import socket
 from bparts import commsocket
 
@@ -88,32 +89,48 @@ def motor():
 		else:
 			flash("Power outside of range(-255,255)")
 		#Checks if the time input was valid
-		if -1<=time<=1:
+		if 0<=time<=1:
 			flash("Time set for (%f)"%time)
 			validator[1]=1
 		else:
-			flash("Time outside of range(-1,1)")
+			flash("Time outside of range(0,1)")
 
 		#Check what motors were selected
-		if motorSet == 0:
-			flash("Please Select a Motor")
-		elif motorSet == 1:
-			flash("Motor 1 selected")
-			validator[2]=1
-		elif motorSet == 2:
-			flash("Motor 2 selected")
-			validator[2]=1
-		elif motorSet == 3:
-			flash("Both Motors selected")
+		if 1<=motorSet<=4:
+			flash("Motor {0} selected").format(motorSet)
 			validator[2]=1
 
 		#checks validators
 		if all(i == 1 for i in validator):
-			flash("It Worked")
 			flash(("Sent command 'output m{0} {1:03} {2}'").format(motorSet,power,time))
 			send_command(("output m{0} {1:03} {2}").format(motorSet,power,time))
 		else:
 			flash("Message not sent, check errors")
 
 	return render_template('motorcontrol.html',submit=submit,mp=mp,motor=motor,mt=mt)
+@app.route('/servo',methods=['GET','POST'])
+def servo():
+	submit=submitForm(request.form)
+	servo=servoFrom()
+	position=positionForm()
+	if request.method =='POST':
+		selection = int(servo.servo.data)
+		position=position.position.data
+		validator=[0,0]
+		if 0<=position<=4096:
+			flash(("Postion Set for ({0})").format(position))
+			validator[0]=1
+		else:
+			flash("Postion Outside of Range (0,4096)")
+		if 1<=selection<=4:
+			flash(("Servo {0} selected").format(selection))
+			validator[1]=1
+		else:
+			flash("Invalid Servo selected")
 
+		if all(i == 1 for i in validator):
+			flash(('Sent Command: "s{0} {1}').format(servo,position))
+			send_command(("output s{0} {1}").format(servo,position))
+		else:
+			flash('Message not sent, check errors')
+	return render_template('servocontrol.html',submit=submit,servo=servo,position=position)
