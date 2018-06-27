@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, RadioField, IntegerField, FloatField
 
-class submitForm(FlaskForm):
+class motorSubmit(FlaskForm):
 	submit = SubmitField(label= 'Submit')
 
 class mpForm(FlaskForm):

@@ -1,11 +1,11 @@
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, RadioField, IntegerField
 
-class submitForm(FlaskForm):
+class servoSubmit(FlaskForm):
 	submit = SubmitField(label= 'Submit')
 
 class positionForm(FlaskForm):
-	position = IntegerField("Position",default=0)
+	position = IntegerField("position",default=0)
 
 class servoForm(FlaskForm):
 	servo = RadioField(

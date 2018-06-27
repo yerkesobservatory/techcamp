@@ -16,8 +16,8 @@ from flask import render_template, request, flash
 from app import app
 from app.droneterm import commandForm
 from app.cameracontrol import cameraForm
-from app.motorcontrol import submitForm, mpForm, mtForm, motorForm
-from app.servocontrol import submitForm, servoForm, positionForm
+from app.motorcontrol import motorSubmit, mpForm, mtForm, motorForm
+from app.servocontrol import servoSubmit, servoForm, positionForm
 import socket
 from bparts import commsocket
 
@@ -70,7 +70,7 @@ def camera():
 	return render_template('camera.html',form=form)
 @app.route('/motor',methods=['GET','POST'])
 def motor():
-	submit=submitForm(request.form)
+	submit=motorSubmit(request.form)
 	mp=mpForm(request.form)
 	mt=mtForm()
 	motor=motorForm()
@@ -80,14 +80,16 @@ def motor():
 		#Gets the data from the inputs
 		power=mp.power.data
 		time=mt.time.data
-		motorSet=int(motor.motor.data)
+		motorSet=0
+		if motor.motor.data != 'None':
+			motorSet=int(motor.motor.data)
 
 		#Checks is the motor power input was valid
-		if -255<=power<=255:
+		if -100<=power<=100:
 			flash("Power set for (%d)"%power)
 			validator[0]=1
 		else:
-			flash("Power outside of range(-255,255)")
+			flash("Power outside of range(-100,100)")
 		#Checks if the time input was valid
 		if 0<=time<=1:
 			flash("Time set for (%f)"%time)
@@ -110,15 +112,17 @@ def motor():
 	return render_template('motorcontrol.html',submit=submit,mp=mp,motor=motor,mt=mt)
 @app.route('/servo',methods=['GET','POST'])
 def servo():
-	submit=submitForm(request.form)
-	servo=servoFrom()
+	submit=servoSubmit(request.form)
+	servo=servoForm()
 	position=positionForm()
 	if request.method =='POST':
-		selection = int(servo.servo.data)
-		position=position.position.data
+		selection=0
+		if servo.servo.data!='None':
+			selection = int(servo.servo.data)
+		posnum=int(position.position.data)
 		validator=[0,0]
-		if 0<=position<=4096:
-			flash(("Postion Set for ({0})").format(position))
+		if 0<=posnum<=4096:
+			flash(("Postion Set for ({0})").format(posnum))
 			validator[0]=1
 		else:
 			flash("Postion Outside of Range (0,4096)")
@@ -129,8 +133,8 @@ def servo():
 			flash("Invalid Servo selected")
 
 		if all(i == 1 for i in validator):
-			flash(('Sent Command: "s{0} {1}').format(servo,position))
-			send_command(("output s{0} {1}").format(servo,position))
+			flash(('Sent Command: "s{0} {1}').format(selection,posnum))
+			send_command(("output s{0} {1}").format(selection,posnum))
 		else:
 			flash('Message not sent, check errors')
 	return render_template('servocontrol.html',submit=submit,servo=servo,position=position)
