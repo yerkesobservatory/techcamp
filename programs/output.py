@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python
 
 ''' Output Server
@@ -33,7 +32,6 @@ logport = int(config['ports']['logger'])
 
 # Imports 
 import time
-from time import sleep
 import socket
 from bparts import commsocket
 import queue
@@ -42,7 +40,7 @@ import logging
 from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor #Motor HAT
 import Adafruit_PCA9685 #Servo HAT
 
-#HAT i2c addresses
+# HAT i2c addresses
 motorHatAddr = 0x60
 servoHatAddr = 0x60
 
@@ -101,14 +99,14 @@ def executor():
                 motor.run(direction)
                 motor.setSpeed(speed)
                 if float(message[7:])!=0:
-                        sleep(float(message[7:]))
+                        time.sleep(float(message[7:]))
                         motor.run(Adafruit_MotorHAT.RELEASE)
                 pass
         if message[0] == 's':
             #Servo
             pwm = Adafruit_PCA9685.PCA9685(address=servoHatAddr)
             pwm.set_pwm_freq(60)
-            pwm.set_pwm(int(message[1]),0,int(message[3:])
+            pwm.set_pwm(int(message[1]),0,int(message[3:]))
             time.sleep(1)
             pass
         commsocket.send_log('Executed: %s' % message, logport, 'output.execute', 'INFO')
