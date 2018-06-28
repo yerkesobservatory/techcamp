@@ -42,7 +42,7 @@ import Adafruit_PCA9685 #Servo HAT
 
 # HAT i2c addresses
 motorHatAddr = 0x60
-servoHatAddr = 0x60
+servoHatAddr = 0x40
 
 ### Thread functions
 
