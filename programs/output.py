@@ -41,7 +41,7 @@ from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor #Motor HAT
 import Adafruit_PCA9685 #Servo HAT
 
 # HAT i2c addresses
-motorHatAddr = 0x60
+motorHatAddr = 0x61
 servoHatAddr = 0x40
 
 ### Thread functions
@@ -85,7 +85,7 @@ def executor():
             time.sleep(0.5)
         ### EXECUTE MESSAGES HERE
         if message[0] == 'm': 
-                mh =Adafruit_MotorHAT(address=motorHatAddr)
+                mh =Adafruit_MotorHAT(addr=motorHatAddr)
                 motor=mh.getMotor(int(message[1]))
                 if message[3]=='-':
                         direction =Adafruit_MotorHAT.BACKWARD
@@ -109,6 +109,12 @@ def executor():
             pwm.set_pwm(int(message[1]),0,int(message[3:]))
             time.sleep(1)
             pass
+
+        if message[0:5]=='color':
+                print("Color Sent")
+                incamport=int(config['ports']['flask_incam'])
+                commsocket.send_msg(message,incamport)
+                pass
         commsocket.send_log('Executed: %s' % message, logport, 'output.execute', 'INFO')
     # Sleep a bit to make sure all messages are out and threads can close
     time.sleep(0.2)
