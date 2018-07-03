@@ -2,7 +2,7 @@
 
 ''' Output Server Simulator
 
-    Input server simulator for Techcamp Balloon project. This
+    Output server simulator for Techcamp Balloon project. This
     runs the input simulator which allows testing communication
     between the output process and other system components.
     
