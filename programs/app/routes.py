@@ -65,8 +65,8 @@ def camera():
 	form=cameraForm(request.form)
 	if request.method == 'POST':
 		if form.takeimg.data == 1:
-			send_command('incam color')
-			print('sent incam color')
+			send_command('output color')
+			print('sent output color')
 	return render_template('camera.html',form=form)
 @app.route('/motor',methods=['GET','POST'])
 def motor():
@@ -99,7 +99,7 @@ def motor():
 
 		#Check what motors were selected
 		if 1<=motorSet<=4:
-			flash("Motor {0} selected").format(motorSet)
+			flash(("Motor {0} selected").format(motorSet))
 			validator[2]=1
 
 		#checks validators
@@ -121,11 +121,11 @@ def servo():
 			selection = int(servo.servo.data)
 		posnum=int(position.position.data)
 		validator=[0,0]
-		if 0<=posnum<=4096:
+		if 0<=posnum<=180:
 			flash(("Postion Set for ({0})").format(posnum))
 			validator[0]=1
 		else:
-			flash("Postion Outside of Range (0,4096)")
+			flash("Postion Outside of Range (0,180)")
 		if 1<=selection<=4:
 			flash(("Servo {0} selected").format(selection))
 			validator[1]=1
@@ -133,6 +133,7 @@ def servo():
 			flash("Invalid Servo selected")
 
 		if all(i == 1 for i in validator):
+			posnum=int(round(posnum*2.5+140))
 			flash(('Sent Command: "s{0} {1}').format(selection,posnum))
 			send_command(("output s{0} {1}").format(selection,posnum))
 		else:
