@@ -37,8 +37,14 @@ from bparts import commsocket
 import queue
 import threading
 import logging
-from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor #Motor HAT
-import Adafruit_PCA9685 #Servo HAT
+try:
+    from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor #Motor HAT
+except:
+    print("WARNING: Couldn't import Adafruit_MotorHAT - Motor commands will NOT work!")
+try:
+    import Adafruit_PCA9685 #Servo HAT
+except:
+    print("WARNING: Couldn't import Adafruit_PCA9685 - Servo commands will NOT work!")
 
 # HAT i2c addresses
 motorHatAddr = 0x60

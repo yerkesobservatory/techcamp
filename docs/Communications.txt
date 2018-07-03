@@ -26,5 +26,6 @@ Flask <-> Sensor
 ----------------
 
 Sensor Communication:
-" 'Sensor Name' " //Sensor name will change based on sensors available. This command will send back the reading of the sensor at that time.
+" 'Sensor Name' " // Sensor name will change based on sensors available. This
+                     command will send back the reading of the sensor at that time.
 
