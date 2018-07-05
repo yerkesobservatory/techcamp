@@ -122,6 +122,8 @@ def dataserver_responder(message):
     try:
         value = datafmt[key] % datadict[key]
     except:
+        commsocket.send_log("Invalid Value Name %s" % key,
+                            logport, 'insensor.dataserver','WARN')
         value = ''
     return value
 

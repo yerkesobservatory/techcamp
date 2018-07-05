@@ -30,5 +30,7 @@ Sensor Communication:
                      command will send back the reading of the sensor at that time.
                      
 Active Sensors:
-  Time : returns time data was last taken in HH:MM:SS format
-  Test : a test variable which is constant
+  time : returns time data was last taken in HH:MM:SS format
+  test : a test variable which is constant
+  dist1, dist2, dist3: distance sensors (not all may be available)
+  head, pitch, roll: attitude control results
