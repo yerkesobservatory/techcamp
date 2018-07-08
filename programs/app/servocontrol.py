@@ -10,5 +10,5 @@ class positionForm(FlaskForm):
 class servoForm(FlaskForm):
 	servo = RadioField(
 		'servo',
-		choices=[(1,'Servo 1'),(2,'Servo 2'),(3,'Servo 3'),(4,'Servo 4')]
+		choices=[(0,'Servo 1'),(1,'Servo 2'),(2,'Servo 3'),(3,'Servo 4')]
 	)
