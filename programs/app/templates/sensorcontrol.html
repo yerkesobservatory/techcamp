@@ -1,0 +1,17 @@
+<script>
+	window.setTimeout(submit,3000);
+	function submit(){
+		document.SensorForm.submit();
+	}
+</script>
+<html>
+HELLO WORLD
+	{% extends "layout.html" %}
+	{% block body %}
+
+		<form name="SensorForm" action="" method="post">
+			<p><h2>Sensor</h2></p>
+			<p>{{ sensor.sensor() }}</p>
+	    	</form>
+	{% endblock %}
+</html>

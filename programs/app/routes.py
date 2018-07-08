@@ -18,6 +18,7 @@ from app.droneterm import commandForm
 from app.cameracontrol import cameraForm
 from app.motorcontrol import motorSubmit, mpForm, mtForm, motorForm
 from app.servocontrol import servoSubmit, servoForm, positionForm
+from app.sensorcontrol import sensorForm
 import socket
 from bparts import commsocket
 
@@ -36,9 +37,9 @@ def send_command(command):
 	    commsocket.send_msg(message, output_port)
 	elif target.lower() == 'insense':
 	    response = commsocket.send_recv(message, insense_port)
-	    print('  Response from InSense: "%s"' % response)
+	    flash('  Response from InSense: "%s"' % response)
 	else:
-	    print("  Error: '%s' is invalid target" % target)
+	    flash("  Error: '%s' is invalid target" % target)
 
 
 #Routes for Flask --Basicly the web address for Flask
@@ -52,7 +53,6 @@ def droneterm():
 	form=commandForm(request.form)
 	if request.method == 'POST':
 		send_command(form.command.data)
-
 	return render_template('droneterm.html',title='Send Command',form=form)
 @app.route('/stream')
 def stream():
@@ -85,11 +85,11 @@ def motor():
 			motorSet=int(motor.motor.data)
 
 		#Checks is the motor power input was valid
-		if -100<=power<=100:
+		if -255<=power<=255:
 			flash("Power set for (%d)"%power)
 			validator[0]=1
 		else:
-			flash("Power outside of range(-100,100)")
+			flash("Power outside of range(-255,255)")
 		#Checks if the time input was valid
 		if 0<=time<=1:
 			flash("Time set for (%f)"%time)
@@ -139,3 +139,10 @@ def servo():
 		else:
 			flash('Message not sent, check errors')
 	return render_template('servocontrol.html',submit=submit,servo=servo,position=position)
+@app.route('/sensor',methods=['GET','POST'])
+def sensor():
+	sensor=sensorForm()
+	if request.method=='POST':
+		send_command(("insense {0}").format(sensor.sensor.data))
+		flash(response)
+	return render_template('sensorcontrol.html',sensor=sensor)
