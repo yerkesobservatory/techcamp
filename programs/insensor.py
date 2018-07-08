@@ -84,30 +84,29 @@ except:
 
 # Global Variables
 datadict = {'test':0, 'time':'00:00:00', # The dictionary for the data
-#            'analog1':0, 'analog2':0, 'analog3':0, 'analog4':0,
-#            'analog5':0, 'analog6':0, 'analog7':0, 'analog8':0,
+            'analog1':0, 'analog2':0, 'analog3':0, 'analog4':0,
+            'analog5':0, 'analog6':0, 'analog7':0, 'analog8':0,
             'heading':0.0, 'pitch':0.0, 'roll':0.0,
             'xgyro':0.0, 'ygyro':0.0, 'zgyro':0.0 }
 datafmt = {'test':'%d', 'time':'%s',  # Formating for the data
-#           'analog1':'%d', 'analog2':'%d', 'analog3':'%d', 'analog4':'%d',
-#           'analog5':'%d', 'analog6':'%d', 'analog7':'%d', 'analog8':'%d',
+           'analog1':'%d', 'analog2':'%d', 'analog3':'%d', 'analog4':'%d',
+           'analog5':'%d', 'analog6':'%d', 'analog7':'%d', 'analog8':'%d',
            'heading':'%.0f', 'pitch':'%.0f', 'roll':'%.0f',
            'xgyro':'%.2f', 'ygyro':'%.2f', 'zgyro':'%.2f' }
-# Get number of analog lines and add to dicts
+datalist = ['test', 'time', 'analog1', 'analog2', 'analog3', 'analog4',
+            'analog5', 'analog6', 'analog7', 'analog7', 'heading',
+            'pitch', 'roll', 'xgyro', 'ygyro', 'zgyro']
+# Get number of analog channels
 Nanalog = int(config['insense']['Nanalog'])
-for i in range(Nanalog):
-    aname = 'analog%d' % i
-    datadict[aname] = 0
-    datafmt[aname] = '%d'
 
 datafilename = '' # The filename for the data
 
 # AD Converter: Software SPI configuration for MCP3008:
-CLK  = 22
-MISO = 23
-MOSI = 24
-CS   = 25
-#mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
+adcCLK  = 22
+adcMISO = 23
+adcMOSI = 24
+adcCS   = 25
+mcp = Adafruit_MCP3008.MCP3008(clk=adcCLK, cs=adcCS, miso=adcMISO, mosi=adcMOSI)
 
 # Attitude Control: Create and configure the BNO sensor connection
 # Raspberry Pi configuration with serial UART and RST connected to GPIO 18:
@@ -155,8 +154,8 @@ def getlogdata():
             for i in range(Nanalog):
                 aname = 'analog%d' % (i+1)
                 try:
-                    mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
-                    datadict[aname] = mpc.read_adc(i)
+                    #mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
+                    datadict[aname] = mcp.read_adc(i)
                 except Exception as e:
                     commsocket.send_log("Error Reading %s" % aname,
                                         logport, 'insensor.getlogdata','WARN')
@@ -176,7 +175,7 @@ def getlogdata():
         ### Save data to file
         # Make text line
         s = ''
-        for key in datadict:
+        for key in datalist:
             s += datafmt[key] % datadict[key]+'\t'
         s.strip()
         # Add to file
