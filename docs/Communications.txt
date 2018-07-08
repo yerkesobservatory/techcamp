@@ -32,5 +32,6 @@ Sensor Communication:
 Active Sensors:
   time : returns time data was last taken in HH:MM:SS format
   test : a test variable which is constant
-  dist1, dist2, dist3: distance sensors (not all may be available)
+  analog1, analog2, analog3, analog4, analog5, analog6, analog7, analog8: analog inputs (not all may be available)
   head, pitch, roll: attitude control results
+  xgyro, ygyro, zgyro: gyroscope (angular velocity) results

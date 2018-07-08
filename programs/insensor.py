@@ -66,11 +66,66 @@ import socket
 from bparts import commsocket
 import queue
 import threading
+import logging
+import sys
+mpc_on = True
+try:
+    import Adafruit_GPIO.SPI as SPI
+    import Adafruit_MCP3008
+except:
+    print("WARNING: Couldn't import Adafruit_GPIO or MCP3008 - Analog Inputs will NOT work!")    
+    mpc_on = False
+bno_on = True
+try:
+    from Adafruit_BNO055 import BNO055
+except:
+    print("WARNING: Couldn't import Adafruit_BNO055 - Attitude Sensing will NOT work!")    
+    bno_on = False
 
 # Global Variables
-datadict = {'test':0, 'time':'00:00:00'} # The dictionary for the data
-datafmt = {'test':'%d', 'time':'%s' } # Formating for the data
+datadict = {'test':0, 'time':'00:00:00', # The dictionary for the data
+#            'analog1':0, 'analog2':0, 'analog3':0, 'analog4':0,
+#            'analog5':0, 'analog6':0, 'analog7':0, 'analog8':0,
+            'heading':0.0, 'pitch':0.0, 'roll':0.0,
+            'xgyro':0.0, 'ygyro':0.0, 'zgyro':0.0 }
+datafmt = {'test':'%d', 'time':'%s',  # Formating for the data
+#           'analog1':'%d', 'analog2':'%d', 'analog3':'%d', 'analog4':'%d',
+#           'analog5':'%d', 'analog6':'%d', 'analog7':'%d', 'analog8':'%d',
+           'heading':'%.0f', 'pitch':'%.0f', 'roll':'%.0f',
+           'xgyro':'%.2f', 'ygyro':'%.2f', 'zgyro':'%.2f' }
+# Get number of analog lines and add to dicts
+Nanalog = int(config['insense']['Nanalog'])
+for i in range(Nanalog):
+    aname = 'analog%d' % i
+    datadict[aname] = 0
+    datafmt[aname] = '%d'
+
 datafilename = '' # The filename for the data
+
+# AD Converter: Software SPI configuration for MCP3008:
+CLK  = 22
+MISO = 23
+MOSI = 24
+CS   = 25
+#mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
+
+# Attitude Control: Create and configure the BNO sensor connection
+# Raspberry Pi configuration with serial UART and RST connected to GPIO 18:
+if bno_on:
+    bno = BNO055.BNO055(serial_port='/dev/serial0', rst=18)
+    # Initialize the BNO055 and stop if something went wrong.
+    if not bno.begin():
+        print('Failed to initialize BNO055! Is the sensor connected?')
+        bno_on = False
+    else:
+        # Print system status and self test result.
+        status, self_test, error = bno.get_system_status()
+        print('BNO055: System status: {0}'.format(status))
+        print('        Self test result (0x0F is normal): 0x{0:02X}'.format(self_test))
+        # Print out an error if system status is in error mode.
+        if status == 0x01:
+            print('        System error: {0}'.format(error))
+            print('        See datasheet section 4.3.59 for the meaning.')
 
 ### Thread functions
 
@@ -95,6 +150,29 @@ def getlogdata():
         ### Read all data
         # Time data
         datadict['time'] = time.strftime('%H:%M:%S')
+        # Analog data
+        if mpc_on:
+            for i in range(Nanalog):
+                aname = 'analog%d' % (i+1)
+                try:
+                    mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
+                    datadict[aname] = mpc.read_adc(i)
+                except Exception as e:
+                    commsocket.send_log("Error Reading %s" % aname,
+                                        logport, 'insensor.getlogdata','WARN')
+                    print(str(e))
+                time.sleep(0.05)
+        # Attitude control data (BNO055 sensor)
+        if bno_on:
+            heading, roll, pitch = bno.read_euler()
+            datadict['heading'] = heading
+            datadict['roll'] = roll
+            datadict['pitch'] = pitch
+            time.sleep(0.05)
+            xgyro, ygyro, zgyro = bno.read_gyroscope()
+            datadict['xgyro'] = xgyro
+            datadict['ygyro'] = ygyro
+            datadict['zgyro'] = zgyro
         ### Save data to file
         # Make text line
         s = ''

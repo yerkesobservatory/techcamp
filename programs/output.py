@@ -58,6 +58,7 @@ def enqueue():
         which will put incoming messages on the queue.
     """
     # start 
+    print('Starting Enqueue Server:')
     commsocket.server(enqueue_responder, int(config['ports']['flask_output']) )
 
 # Enqueue responder function
@@ -135,6 +136,7 @@ def logger():
     fhand.setFormatter(logging.Formatter(fmt))
     logging.getLogger().addHandler(fhand)
     # Listen for logging events on logport
+    print('Starting Logging Server')
     commsocket.server(log_responder, logport )
 
 # Logger responder function

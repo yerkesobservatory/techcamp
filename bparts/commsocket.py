@@ -9,6 +9,7 @@ between different programs over sockets.
 
 import string
 import socket
+import select
 
 def send_msg(message, port, server = '127.0.0.1'):
     """ Sends a message to a given port on server. This function
@@ -22,6 +23,7 @@ def send_msg(message, port, server = '127.0.0.1'):
     """
     # Open socket and connect
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    print('send_msg', server, port)
     s.connect((server, port))
     # Send message and close socket
     s.sendall(message.encode())
@@ -47,11 +49,16 @@ def send_recv(message, port, server = '127.0.0.1', resplen = 100):
     # Open socket and connect
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect(('127.0.0.1', port))
+    s.setblocking(0)
     # Send message
     s.sendall(message.encode())
     # Wait for response
-    resp = s.recv(100)
-    resp = resp.decode()
+    ready = select.select([s], [], [], 0.5)
+    if ready[0]:
+        resp = s.recv(100)
+        resp = resp.decode()
+    else:
+        resp = ''
     # Close socket and return
     s.close()
     return resp
