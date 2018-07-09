@@ -23,8 +23,9 @@ import socket
 from bparts import commsocket
 
 # Globals
-output_port = 50749
-insense_port = 50748
+output_port = config['ports']['flask_output']
+insense_port = config['ports']['flask_insense']
+incam_port = config['ports']['flask_incam']
 
 #Functions
 def send_command(command):
@@ -38,8 +39,12 @@ def send_command(command):
 	elif target.lower() == 'insense':
 	    response = commsocket.send_recv(message, insense_port)
 	    flash('  Response from InSense: "%s"' % response)
+	elif target.lower() == 'incam':
+		commsocket.send_msg(message, incam_port)
+	elif target.lower() == 'log':
+		commsocket.send_log(message, log_port, 'flask.client')
 	else:
-	    flash("  Error: '%s' is invalid target" % target)
+	    flash('  Error: "%s" is invalid target' % target)
 
 
 #Routes for Flask --Basicly the web address for Flask

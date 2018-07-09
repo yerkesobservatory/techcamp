@@ -91,25 +91,31 @@ def executor():
         while time.time() - timesec < timedelay :
             time.sleep(0.5)
         ### EXECUTE MESSAGES HERE
-        if message[0] == 'm': 
-                mh =Adafruit_MotorHAT(addr=motorHatAddr)
-                motor=mh.getMotor(int(message[1]))
-                if message[3]=='-':
-                        direction =Adafruit_MotorHAT.BACKWARD
-                        speed=int(message[4:6])
-                elif message[3]==0:
-                        direction=Adafruit_MotorHAT.RELEASE
-                        speed=0
-                else:
-                        direction=Adafruit_MotorHAT.FORWARD
-                        speed=int(message[3:5])
-                motor.run(direction)
-                motor.setSpeed(speed)
-                if float(message[7:])!=0:
-                        time.sleep(float(message[7:]))
-                        motor.run(Adafruit_MotorHAT.RELEASE)
+        # Motor:
+        if message[0].lower() == 'm': 
+            # Make a motor hat with correct number
+            mh =Adafruit_MotorHAT(addr=motorHatAddr)
+            motor=mh.getMotor(int(message[1]))
+            # Get speed, direction and duration
+            msplit = message.split()
+            speed = int(msplit[1])
+            if speed < 0:
+                direction = Adafruit_MotorHAT.BACKWARD
+                speed = -speed
+            elif speed > 0:
+                direction = Adafruit_MotorHAT.FORWARD
+            else:
+                direction = Adafruit_MotorHAT.RELEASE
+            duration = float(msplit[2])
+            # Set motor movement
+            motor.run(direction)
+            motor.setSpeed(speed)
+            # Wait for duration
+            if duration!=0:
+                time.sleep(duration)
+                motor.run(Adafruit_MotorHAT.RELEASE)
+        # Servo
         if message[0] == 's':
-            #Servo
             pwm = Adafruit_PCA9685.PCA9685(address=servoHatAddr)
             pwm.set_pwm_freq(60)
             pwm.set_pwm(int(message[1]),0,int(message[3:]))
