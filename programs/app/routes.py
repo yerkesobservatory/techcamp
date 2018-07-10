@@ -23,9 +23,9 @@ import socket
 from bparts import commsocket
 
 # Globals
-output_port = config['ports']['flask_output']
-insense_port = config['ports']['flask_insense']
-incam_port = config['ports']['flask_incam']
+output_port = int(config['ports']['flask_output'])
+insense_port = int(config['ports']['flask_insense'])
+incam_port = int(config['ports']['flask_incam'])
 
 #Functions
 def send_command(command):
@@ -149,5 +149,4 @@ def sensor():
 	sensor=sensorForm()
 	if request.method=='POST':
 		send_command(("insense {0}").format(sensor.sensor.data))
-		flash(response)
 	return render_template('sensorcontrol.html',sensor=sensor)
