@@ -96,8 +96,7 @@ datafmt = {'test':'%d', 'time':'%s',  # Formating for the data
 datalist = ['test', 'time', 'analog1', 'analog2', 'analog3', 'analog4',
             'analog5', 'analog6', 'analog7', 'analog7', 'heading',
             'pitch', 'roll', 'xgyro', 'ygyro', 'zgyro']
-# Get number of analog channels
-Nanalog = int(config['insense']['Nanalog'])
+Nanalog = 8 # Number of analog channels
 
 datafilename = '' # The filename for the data
 
