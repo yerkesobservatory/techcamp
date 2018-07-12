@@ -24,7 +24,7 @@ screen -S flyscreen -p log -X stuff 'tail -f ~/space_log.txt
 '
 # Run incam
 screen -S flyscreen -p incam -X stuff 'cd ~/techcamp/programs
-python3 incam.py ../configs/master.ini
+python incam.py ../configs/master.ini
 '
 # Run insensor
 screen -S flyscreen -p insense -X stuff 'cd ~/techcamp/programs

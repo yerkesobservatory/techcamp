@@ -1,4 +1,4 @@
-""" Datalog_Translator.py
+""" Datalog_Tranpslator.py
 
     Translates the raw file from the feather with GPS into a Tab delimited
     data file.
@@ -70,7 +70,6 @@ for i in range(n):
      latarr[i] += 100*(lat-latarr[i])/60.
      # Change altitudees
      heiarr[i] = float( alts[i].strip() )
-
 
 pylab.figure()
 pylab.subplot(4,1,1)
