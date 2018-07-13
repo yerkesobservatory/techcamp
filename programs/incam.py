@@ -24,6 +24,7 @@ from bparts import commsocket
 camera = picamera.PiCamera()
 # Globals
 flask_port = int(config['ports']['flask_incam'])
+brightness = int(config['incam']['brightness'])
 cmd = ''
 message=''
 time=0
@@ -34,6 +35,7 @@ def take_pic(time):
 	while 1:
 		sleep(1)
 		#Change camera settings	
+		camera.brightness=brightness
 		camera.color_effects = (128,128) #sets the camera to black and white
 		camera.resolution=(320,240) #sets the resolution of the camera
 		camera.annotate_text_size = 16 #default 32
