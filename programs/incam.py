@@ -42,7 +42,7 @@ def take_pic(time):
 		camera.annotate_text = datetime.now().strftime('%Y-%m-%d %H:%M:%S') #adds time stamp to image
 
 		camera.capture('app/static/images/stream.jpg') #Take the image
-		if time==10:
+		if time==3:
 			camera.capture('data/images/bw/bw_'+datetime.now().strftime('%Y-%m-%d_%H-%M-%S')+'.jpg')
 			time=0
 		time = time+1
