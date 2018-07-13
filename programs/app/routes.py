@@ -60,7 +60,7 @@ def droneterm():
 		send_command(form.command.data)
 	return render_template('droneterm.html',title='Send Command',form=form)
 @app.route('/heading',methods=['GET','POST'])
-def heading:
+def heading():
 	if request.method=='POST':
 		send_command('insense heading')
 	return render_template('heading.html')
